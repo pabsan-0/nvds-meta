@@ -80,7 +80,7 @@ main (gint argc, gchar *argv[])
         " ! rtph264depay "
         " ! h264parse config-interval=-1 "
         " ! avdec_h264  "
-        " ! identity name=receiver_after_udp "
+        " ! identity name=receiver_at_sink "
         " ! videoconvert "
         " ! autovideosink ";
 
@@ -100,7 +100,7 @@ main (gint argc, gchar *argv[])
     place_probe(pipeline, "injector",       probe_meta_write);
     place_probe(pipeline, "receiver_after_h264", probe_meta_read);
     place_probe(pipeline, "receiver_after_rtppay", probe_meta_read);
-    place_probe(pipeline, "receiver_after_udp", probe_meta_read);
+    place_probe(pipeline, "receiver_at_sink", probe_meta_read);
 
     /* play */
     gst_element_set_state (pipeline, GST_STATE_PLAYING);

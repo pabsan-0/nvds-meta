@@ -1,4 +1,4 @@
-# NVDS-Performance
+# NVDS-Meta
 
 This repo holds several examples on metadata **handling** and **streaming**, pertaining to both GStreamer and Nvidia Deepstream pipelines.
 

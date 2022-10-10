@@ -47,8 +47,6 @@ static void
 push_klv (GstElement *src,  guint unused_size, gpointer u_data)
 {
     GstAppSrc *appsrc = GST_APP_SRC(src);
-    GstClock *clock = NULL;
-    GstClockTime base_time, now;
 
     // Faking a string as klv
     char* message = "hello gstreamer";

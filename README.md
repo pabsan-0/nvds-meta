@@ -22,7 +22,7 @@ Extra dependencies for only some samples (will be indicated):
 
 - Nvidia Deepstream (`nvinfer` prepared beforehand)
 
-All of the code in here should run out of the box on [NVDS-Lite](https://bitbucket.org/fadacatec-ondemand/nvds-lite/src/master/) environment.
+All of the code in here should run out of the box on [NVDS-Lite](https://bitbucket.org/fadacatec-ondemand/nvds-lite/src/master/) environment (adding `--ipc=host` to docker run launcher might be needed to run some examples).
 
 
 ## Repository contents
@@ -45,10 +45,6 @@ Each of these approaches has its own subdirectory. In there, you will find some 
 - [Eslam provides top value intel on metadata approaches](https://lists.freedesktop.org/archives/gstreamer-devel/2021-September/079056.html)
 - [RidgeRun's surface theory on klv injection plus plugin promotion](https://developer.ridgerun.com/wiki/index.php/GStreamer_and_in-band_metadata)
 
-
-## Known issues
-
-- Docker run might require `--ipc=host`, else executable segfaults (not included in default NVDS-Lite)
 
 
 ## Convenient extra tools

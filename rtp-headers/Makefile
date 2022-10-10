@@ -1,7 +1,7 @@
 
-all: rtpheader-01
+all: rtp-one-byte
 
-rtpheader-01: rtpheader-01.c
+rtp-one-byte: rtp-one-byte.c
 	gcc -Wall -g3 -o $@.o $^ `pkg-config --libs --cflags gstreamer-1.0 gstreamer-app-1.0 gstreamer-rtp-1.0`
 
 clean:

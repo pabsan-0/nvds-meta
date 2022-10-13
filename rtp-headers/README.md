@@ -26,3 +26,24 @@ make
                                               |           ▼
                                             inject     retrieve
 ```
+
+## ✔ nvds-two-bytes.c
+
+Nvidia Deepstream detections streaming through UDP. Uses `gst_rtp_buffer_add_extension_twobytes_header` to attach detections to every frame's last RTP packet.
+
+NVDSMeta appears to be unreachable in the RTP buffers, so it is extracted first to GstMeta, then moved to RTP.
+
+```
+make -C nvds-two-bytes
+./nvds-two-bytes/main  &
+./nvds-two-bytes/receive.o
+```
+```
+                      video         video           application                             video
+┌─────────┐  ┌──────┐ x-raw ┌─────┐ x-264 ┌───────┐ x-rtp       ┌─────────┐  UDP   ┌──────┐ x-raw
+│ v4l2src ├─►│ NVDS ├───────│xh264├──────►│rtp*pay├────────────►│rtp*depay├── * ──►│decode├──────►
+└─────────┘  └──────┘       └─────┘       └───────┘             └─────────┘        └──────┘
+                                    │ ▲               │ ▲                         │
+                                    ▼ |               ▼ |                         ▼
+                            NvdsMeta->GstMeta   GstMeta->rtp header        rtp header->stdout
+```

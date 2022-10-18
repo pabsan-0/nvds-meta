@@ -32,8 +32,8 @@ This repo showcases the following approaches to manage metadata, those marked �
 - ✔ GstMeta: the "canonical" approach to metadata, using GstMeta objects attached to buffers. **GstMeta can't send meta over the network**
 - ✔ KLV injection: consists on creating buffers carrying metadata as if they were data, and mux them with actual video in a Transport Stream that gets sent through the network.
 - ✔ RTP headers: appends disposable headers to RTP packets right before take-off, which can be retrieved at the other end.
+- ✖ h264 SEI: some media types allow users to embed data inside their containers. For example the SEI field in h264/h265 streams.
 - ✖ Custom media types: this approach requires building coding/decoding tools capable of appending/retrieving extra bytes to encoded media formats, which would carry the per-frame meta.
-- ✖ Default media user data: some media types allow users to embed data inside their containers. For example: h264 and SEI metadata.
 
 Each of these approaches has its own subdirectory. In there, you will find some samples, as well as some extra information of interest. Along with the samples, we pack a `.dump` folder to carry non-working experiments for reference. Feel free to contribute pushing these use cases!
 
@@ -44,6 +44,17 @@ Each of these approaches has its own subdirectory. In there, you will find some 
 - [Eslam tells you his approach for muxing video and meta](https://stackoverflow.com/questions/68098185/add-stream-meta-to-a-stream-via-gstreamer)
 - [Eslam provides top value intel on metadata approaches](https://lists.freedesktop.org/archives/gstreamer-devel/2021-September/079056.html)
 - [RidgeRun's surface theory on klv injection plus plugin promotion](https://developer.ridgerun.com/wiki/index.php/GStreamer_and_in-band_metadata)
+
+
+## Compatibility table
+
+Below, a compatibility table of each approach with a few different network communication sinks. These are not written in stone, feel free to try and make options marked ✖ work. Unmarked fields stand for untested use cases.
+
+|                |  udpsink  | rtspclientsink  |  srtsink  | Details                                      |
+|----------------|-----------|-----------------|-----------|----------------------------------------------|
+| klv injection  |     ✔     |                 |           | Not really synchronous w/o RigdeRun's plugin |
+| rtp headers    |     ✔     |        ✖        |     ✖     | Requires access to rtp buffers               |
+| h264 sei       |           |                 |           |                                              |
 
 
 

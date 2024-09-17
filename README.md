@@ -9,7 +9,15 @@ These files have two purposes:
 
 Metadata handling requires some tools unreachable via `gst-launch`, hence some prior knowledge in C's GLib, GObject and GStreamer will be most useful as all samples are written in C.
 
-[TOC]
+
+<!-- vim-markdown-toc GFM -->
+
+* [Setup](#setup)
+* [Repository contents](#repository-contents)
+* [Compatibility table](#compatibility-table)
+* [Convenient extra tools](#convenient-extra-tools)
+
+<!-- vim-markdown-toc -->
 
 ## Setup
 
